@@ -47,9 +47,9 @@ def new_project():
         # format date mm/dd/yyyy
         today = today.strftime("%m-%d-%Y")
         # get the last ID used and increment by 1
-        id = len(projectList)+1
+        id = len(projects)+1
         # create new note entry
-        projectList[id] = {'title' : title, 'text' : text, 'date' : today}
+        projects[id] = {'title' : title, 'text' : text, 'date' : today}
         # ready to render response - redirect to projects listing
         return redirect(url_for('get_projects'))
     else:
