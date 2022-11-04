@@ -2,9 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Project Management App">
+    <title>Project Management App - New Project</title>
 </head>
 <body>
+    <nav id="nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li></li>
+        </ul>
+    </nav>
+
+
+        <form action="new" method="post">
+            <p><label>Project Title </label></p>
+            <p><input type="text" name="title"/></p>
+            <p><label>Note </label></p>
+            <p><textarea name="projectText"  rows="6" cols="0" >Add your project description here ...</textarea></p>
+            <p><input type="submit" value="Add Project"/></p>
+        </form>
 
 </body>
 </html>

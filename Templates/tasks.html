@@ -6,5 +6,24 @@
 </head>
 <body>
 
+    <nav id="nav">
+            <a href="{{url_for('index')}}"> Home</a> ||
+            <a href="{{url_for('get_projects')}}"> Projects</a> ||
+
+    </nav>
+
+    <h1>{{Tasks</h1>
+
+        <table>
+            <tr>
+                <th>Projects</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>{{ notes.title }}</td>
+                <td>{{ notes.date }}</td>
+            </tr>
+        </table>
+
 </body>
 </html>

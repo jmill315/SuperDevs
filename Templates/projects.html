@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Project Management App">
+    <title>Project Management App - New Project</title>
 </head>
 <body>
+
+    <nav id="nav">
+            <a href="{{url_for('index')}}"> Home</a> ||
+            <a href="{{url_for('get_projects')}}"> Projects</a> ||
+
+    </nav>
+
+
+    <h1>Current Projects</h1>
+
+        <table>
+            <tr>
+                <th>Projects</th>
+                <th>Date</th>
+            </tr>
+            {% for key, value in projects.items() %}
+            <tr>
+                <td><a href="projects/{{key}}">{{ value.title }}</a></td>
+                <td>{{ value.date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
 </body>
 </html>

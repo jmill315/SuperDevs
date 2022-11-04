@@ -5,13 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-    <nav id="">
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+    <nav id="nav">
+            <a href="{{url_for('index')}}"> Home</a> ||
+            <a href="{{url_for('get_projects')}}"> Projects</a> ||
+
     </nav>
+
+    <h1>Welcome {{user.name}} to the Chello App!</h1>
 
 </body>
 </html>
