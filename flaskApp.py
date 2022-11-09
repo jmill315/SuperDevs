@@ -5,6 +5,9 @@ from flask import render_template
 from flask import request
 from flask import redirect, url_for
 from database import db
+from models import Project as Project
+from models import Task as Task
+from models import User as User
 
 app = Flask(__name__)
 
@@ -16,35 +19,33 @@ db.init-app(app)
 with app.app_context():
     db.create_all()
 
-#test dictionaries and user
-projects = {1: {'title': 'Create web page', 'text': 'Create a web page for client', 'date': '10-1-2020'},
-               2: {},
-               3: {}
-               }
-tasks = {1: {'title': 'Create Index HTML file', 'text': 'Create and code in HTML file called index', 'date': '10-1-2020'},
-         2: {},
-         3: {}
-         }
-a_user = {'name':'Bob', 'email':'mogli@uncc.edu'}
-
 
 @app.route('/index')
 def index():
+    # get user from database
+    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
     return render_template('index.html', user=a_user)
 
 @app.route('/projects')
 def get_projects():
+    # get user from database
+    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+    # get projects from database
+    projects = db.session.query(Project).all()
     return render_template('projects.html', projects=projects, user=a_user)
 
 @app.route('/projects/<project_id>')
-def get_tasks():
-    return render_template('tasks.html', user=a_user)
+def get_tasks(project_id):
+    # get user from database
+    a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+    # get tasks from database
+    tasks = db.session.query(Task).filter_by(id=project_id)
+    return render_template('tasks.html', tasks=tasks, user=a_user)
 
 @app.route('/projects/newProject', methods=['Get', 'POST'])
 def new_project():
 
     # check method used for request
-    print('request method is', request.method)
     if request.method == 'POST':
         # get title data
         title = request.form['title']
@@ -55,13 +56,13 @@ def new_project():
         today = date.today()
         # format date mm/dd/yyyy
         today = today.strftime("%m-%d-%Y")
-        # get the last ID used and increment by 1
-        id = len(projects)+1
-        # create new note entry
-        projects[id] = {'title' : title, 'text' : text, 'date' : today}
-        # ready to render response - redirect to projects listing
+        new_record = Project(title, today)
+        db.session.add(new_record)
+        db.session.commit()
         return redirect(url_for('get_projects'))
     else:
+        # get user from database
+        a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
         return render_template('newProject.html', user=a_user)
 
 app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)
