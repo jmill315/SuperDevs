@@ -22,10 +22,10 @@
                 <th>Projects</th>
                 <th>Date</th>
             </tr>
-            {% for key, value in projects.items() %}
+            {% for project in projects %}
             <tr>
-                <td><a href="projects/{{key}}">{{ value.title }}</a></td>
-                <td>{{ value.date }}</td>
+                <td><a href="url_for('get_projects', project_id=project.id">{{ project.title }}</a></td>
+                <td>{{ project.date }}</td>
             </tr>
             {% endfor %}
         </table>
