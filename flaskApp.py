@@ -14,11 +14,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_project_app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 # Bind SQLAlchemy db object to this Flask app
-db.init-app(app)
+db.init_app(app)
 # setup models
 with app.app_context():
     db.create_all()
-
 
 @app.route('/index')
 def index():
@@ -38,13 +37,14 @@ def get_projects():
 def get_tasks(project_id):
     # get user from database
     a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+    # get project from database
+    projects = db.session.query(Project).filter_by(id=project_id)
     # get tasks from database
-    tasks = db.session.query(Task).filter_by(id=project_id)
-    return render_template('tasks.html', tasks=tasks, user=a_user)
+    tasks = db.session.query(Project.task).filter_by(id=project_id)
+    return render_template('tasks.html', projects=projects, tasks=tasks, user=a_user)
 
-@app.route('/projects/newProject', methods=['Get', 'POST'])
+@app.route("/projects/newProject", methods=['GET', 'POST'])
 def new_project():
-
     # check method used for request
     if request.method == 'POST':
         # get title data
@@ -56,7 +56,7 @@ def new_project():
         today = date.today()
         # format date mm/dd/yyyy
         today = today.strftime("%m-%d-%Y")
-        new_record = Project(title, today)
+        new_record = Project(title, text, today)
         db.session.add(new_record)
         db.session.commit()
         return redirect(url_for('get_projects'))

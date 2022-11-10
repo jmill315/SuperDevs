@@ -3,16 +3,20 @@ from database import db
 class Project(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     title = db.Column("title", db.String(200))
+    text = db.Column("text", db.String(200))
     date = db.Column("date", db.String(50))
-    def __abs__(self, title, date):
+    tasks = db.relationship('Task', backref='project')
+    def __init__(self, title, text, date):
         self.title = title
+        self.text = text
         self.date = date
-        self.task = self.Task()
+
 
 class Task(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     title = db.Column("title", db.String(200))
     date = db.Column("date", db.String(50))
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     def __init__(self, title, date):
         self.title = title
         self.date = date
