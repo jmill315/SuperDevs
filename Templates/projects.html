@@ -6,13 +6,36 @@
     <meta name="description" content="Project Management App">
     <title>Project Management App - New Project</title>
 </head>
+
+<!-- Bootstrap CSS + Local css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>"> -->
 <body>
 
-    <nav id="nav">
-            <a href="{{url_for('index')}}"> Home</a> ||
-            <a href="{{url_for('get_projects')}}"> Projects</a> ||
+  <!-- Navbar -->
+  <section id="the-navbar">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="">Chello App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse navbar-links" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
 
+          <li class="nav-item mr-auto">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item mr-auto">
+            <a class="nav-link" href="projects.html">Projects</a>
+          </li>
+          <li class="nav-item mr-auto">
+            <a class="nav-link" href="signup.html">Sign Up</a>
+          </li>
+
+        </ul>
+      </div>
     </nav>
+  </section>
 
 
     <h1>Current Projects</h1>
