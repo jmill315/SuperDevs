@@ -41,10 +41,10 @@ def get_tasks(project_id):
     # get user from database
     a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
     # get project from database
-    projects = db.session.query(Project).filter_by(id=project_id).one()
+    project = db.session.query(Project).filter_by(id=project_id).one()
     # get tasks from database
     tasks = db.session.query(Project.tasks).filter_by(id=project_id).all()
-    return render_template('tasks.html', projects=projects, tasks=tasks, user=a_user)
+    return render_template('tasks.html', projects=project, tasks=tasks, user=a_user)
 
 
 @app.route('/projects/newProject', methods=['GET', 'POST'])
@@ -68,6 +68,24 @@ def new_project():
         # get user from database
         a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
         return render_template("newProject.html", user=a_user)
+
+@app.route('/projects/<project_id>/newTask', methods=['GET', 'POST'])
+def new_task(project_id):
+    # check method used for request
+    if request.method == 'POST':
+        title = request.form['title']
+        project = db.session.query(Project).filter_by(id=project_id)
+        new_record = Task(title, project)
+        db.session.add(new_record)
+        db.session.commit()
+        return redirect(url_for('get_tasks'))
+    else:
+        a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+        return render_template("newTask.html", user=a_user)
+
+
+
+
 
 
 app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)

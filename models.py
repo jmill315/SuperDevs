@@ -15,7 +15,7 @@ class Project(db.Model):
 class Task(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     title = db.Column("title", db.String(200))
-    date = db.Column("date", db.String(50))
+    #date = db.Column("date", db.String(50))
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     def __init__(self, title, project_id):
         self.title = title

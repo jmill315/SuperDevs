@@ -25,7 +25,7 @@
             </tr>
             {% for project in projects %}
             <tr>
-                <td><a href="{{url_for('get_projects',project_id=project.id)}}">{{ project.title }}</a></td>
+                <td><a href="{{url_for('get_tasks',project_id=project.id)}}">{{ project.title }}</a></td>
                 <td>{{ project.date }}</td>
             </tr>
             {% endfor %}
