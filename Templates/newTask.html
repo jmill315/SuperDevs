@@ -8,11 +8,10 @@
 </head>
 <body>
     <nav id="nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li></li>
-        </ul>
+            <a href="{{url_for('index')}}"> Home</a> ||
+            <a href="{{url_for('get_projects')}}"> Projects</a> ||
+            <a href="{{url_for('new_project')}}"> New Project</a> ||
+
     </nav>
 
         <form action="new" method="post">

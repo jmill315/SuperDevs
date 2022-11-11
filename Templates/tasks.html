@@ -9,19 +9,27 @@
     <nav id="nav">
             <a href="{{url_for('index')}}"> Home</a> ||
             <a href="{{url_for('get_projects')}}"> Projects</a> ||
+            <a href="{{url_for('new_project')}}"> New Project</a> ||
 
     </nav>
 
-    <h1>{{Tasks</h1>
+    <h1>{{projects.title}}</h1>
+    <h2>{{projects.text}}</h2>
 
         <table>
             <tr>
-                <th>Projects</th>
+                <th>Tasks</th>
                 <th>Date</th>
             </tr>
             <tr>
-                <td>{{ notes.title }}</td>
-                <td>{{ notes.date }}</td>
+                {% if projects.tasks %}
+                    {% if projects.tasks|length > 0 %}
+                        {% for task in projects.tasks %}
+                            <td>{{ projects.tasks.title }}</td>
+                            <td>{{ projects.tasks.date }}</td>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
             </tr>
         </table>
 
