@@ -5,7 +5,7 @@ class Project(db.Model):
     title = db.Column("title", db.String(200))
     text = db.Column("text", db.String(200))
     date = db.Column("date", db.String(50))
-    tasks = db.relationship('Task', backref='project')
+    tasks = db.relationship("Task", backref="project", cascade="all, delete-orphan", lazy=True)
     def __init__(self, title, text, date):
         self.title = title
         self.text = text
@@ -17,9 +17,9 @@ class Task(db.Model):
     title = db.Column("title", db.String(200))
     date = db.Column("date", db.String(50))
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
-    def __init__(self, title, date):
+    def __init__(self, title, project_id):
         self.title = title
-        self.date = date
+        self.project_id = project_id
 
 class User(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)

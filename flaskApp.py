@@ -12,18 +12,20 @@ from models import User as User
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_project_app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Bind SQLAlchemy db object to this Flask app
 db.init_app(app)
 # setup models
 with app.app_context():
     db.create_all()
 
+
 @app.route('/index')
 def index():
     # get user from database
     a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
     return render_template('index.html', user=a_user)
+
 
 @app.route('/projects')
 def get_projects():
@@ -33,17 +35,19 @@ def get_projects():
     projects = db.session.query(Project).all()
     return render_template('projects.html', projects=projects, user=a_user)
 
+
 @app.route('/projects/<project_id>')
 def get_tasks(project_id):
     # get user from database
     a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
     # get project from database
-    projects = db.session.query(Project).filter_by(id=project_id)
+    projects = db.session.query(Project).filter_by(id=project_id).one()
     # get tasks from database
-    tasks = db.session.query(Project.task).filter_by(id=project_id)
+    tasks = db.session.query(Project.tasks).filter_by(id=project_id).all()
     return render_template('tasks.html', projects=projects, tasks=tasks, user=a_user)
 
-@app.route("/projects/newProject", methods=['GET', 'POST'])
+
+@app.route('/projects/newProject', methods=['GET', 'POST'])
 def new_project():
     # check method used for request
     if request.method == 'POST':
@@ -63,7 +67,8 @@ def new_project():
     else:
         # get user from database
         a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
-        return render_template('newProject.html', user=a_user)
+        return render_template("newProject.html", user=a_user)
+
 
 app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)
 # To see the web page in your web browser, go to the url,

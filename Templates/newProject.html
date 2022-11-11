@@ -8,18 +8,17 @@
 </head>
 <body>
     <nav id="nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li></li>
-        </ul>
+            <a href="{{url_for('index')}}"> Home</a> ||
+            <a href="{{url_for('get_projects')}}"> Projects</a> ||
+            <a href="{{url_for('new_project')}}"> New Project</a> ||
+
     </nav>
 
 
-        <form action="new" method="post">
+        <form action="newProject" method="POST">
             <p><label>Project Title </label></p>
             <p><input type="text" name="title"/></p>
-            <p><label>Note </label></p>
+            <p><label>Description </label></p>
             <p><textarea name="projectText"  rows="6" cols="0" >Add your project description here ...</textarea></p>
             <p><input type="submit" value="Add Project"/></p>
         </form>
