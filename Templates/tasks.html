@@ -3,30 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <!-- Bootstrap CSS + Local css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>"> -->
 </head>
+
+
+<!-- Navbar -->
+<section id="the-navbar">
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="">Chello App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse navbar-links" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item mr-auto">
+          <a class="nav-link" href="{{url_for('index')}}">Home</a>
+        </li>
+        <li class="nav-item mr-auto">
+          <a class="nav-link" href="{{url_for('get_projects')}}">Projects</a>
+        </li>
+        <li class="nav-item mr-auto">
+            <!-- need to create a app.route for sign up page -->
+          <a class="nav-link" href="{{url_for('index')}}">Sign Up</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</section>
+
 <body>
-
-    <nav id="nav">
-            <a href="{{url_for('index')}}"> Home</a> ||
-            <a href="{{url_for('get_projects')}}"> Projects</a> ||
-            <a href="{{url_for('new_project')}}"> New Project</a> ||
-
-    </nav>
-
     <h1>{{projects.title}}</h1>
     <h2>{{projects.text}}</h2>
-    <h3><a href="{{url_for('new_task',project_id=projects.id)}}">Create Task</a></h3>
+    <h3><a href="{{url_for('new_task', project_id=projects.id)}}">Create Task</a></h3>
         <table>
             <tr>
                 <th>Tasks</th>
-                <th>Date</th>
             </tr>
             <tr>
                 {% if projects.tasks %}
                     {% if projects.tasks|length > 0 %}
                         {% for task in projects.tasks %}
-                            <td>{{ projects.tasks.title }}</td>
-                            <td>{{ projects.tasks.date }}</td>
+                            <td>{{ task.title }}</td>
                         {% endfor %}
                     {% endif %}
                 {% endif %}

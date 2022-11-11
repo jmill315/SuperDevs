@@ -5,16 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Project Management App">
     <title>Project Management App - New Project</title>
+
+    <!-- Bootstrap CSS + Local css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>"> -->
 </head>
+
+<!-- Navbar -->
+<section id="the-navbar">
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="">Chello App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse navbar-links" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item mr-auto">
+          <a class="nav-link" href="{{url_for('index')}}">Home</a>
+        </li>
+        <li class="nav-item mr-auto">
+          <a class="nav-link" href="{{url_for('get_projects')}}">Projects</a>
+        </li>
+        <li class="nav-item mr-auto">
+            <!-- need to create a app.route for sign up page -->
+          <a class="nav-link" href="{{url_for('index')}}">Sign Up</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</section>
+
+
 <body>
-    <nav id="nav">
-            <a href="{{url_for('index')}}"> Home</a> ||
-            <a href="{{url_for('get_projects')}}"> Projects</a> ||
-            <a href="{{url_for('new_project')}}"> New Project</a> ||
-
-    </nav>
-
-
         <form action="newProject" method="POST">
             <p><label>Project Title </label></p>
             <p><input type="text" name="title"/></p>

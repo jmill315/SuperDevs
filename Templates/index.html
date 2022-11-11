@@ -21,13 +21,14 @@
       <ul class="navbar-nav ms-auto">
 
         <li class="nav-item mr-auto">
-          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="{{url_for('index')}}">Home</a>
         </li>
         <li class="nav-item mr-auto">
-          <a class="nav-link" href="projects.html">Projects</a>
+          <a class="nav-link" href="{{url_for('get_projects')}}">Projects</a>
         </li>
         <li class="nav-item mr-auto">
-          <a class="nav-link" href="signup.html">Sign Up</a>
+            <!-- need to create a app.route for sign up page -->
+          <a class="nav-link" href="{{url_for('index')}}">Sign Up</a>
         </li>
 
       </ul>

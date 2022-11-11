@@ -41,7 +41,7 @@ def get_tasks(project_id):
     # get user from database
     a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
     # get project from database
-    project = db.session.query(Project).filter_by(id=project_id).one()
+    project = db.session.query(Project).filter_by(id=project_id)
     # get tasks from database
     tasks = db.session.query(Project.tasks).filter_by(id=project_id).all()
     return render_template('tasks.html', projects=project, tasks=tasks, user=a_user)
@@ -78,10 +78,10 @@ def new_task(project_id):
         new_record = Task(title, project)
         db.session.add(new_record)
         db.session.commit()
-        return redirect(url_for('get_tasks'))
+        return redirect(url_for('get_tasks', project_id=project_id))
     else:
         a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
-        return render_template("newTask.html", user=a_user)
+        return render_template('newTask.html', user=a_user)
 
 
 
