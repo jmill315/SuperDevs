@@ -83,7 +83,28 @@ def new_task(project_id):
         a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
         return render_template('newTask.html', user=a_user)
 
+@app.route('/projects/edit/<project_id>', methods=['GET', 'POST'])
+def update_project(project_id):
+    if request.method == 'POST':
+        title = request.form['title']
+        text = request.form['projectText']
+        project = db.session.query(Project).filter_by(id=project_id).one()
+        project.title = title
+        project.text = text
+        db.session.add(project)
+        db.session.commit()
+        return redirect(url_for('get_projects'))
+    else:
+        a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
+        my_project = db.session.query(Project).filter_by(id=project_id).one()
+        return render_template('newProject.html', project=my_project, user=a_user)
 
+@app.route('/projects/delete/<project_id>', methods=['POST'])
+def delete_project(project_id):
+    my_project = db.session.query(Project).filter_by(id=project_id).one()
+    db.session.delete(my_project)
+    db.session.commit()
+    return redirect(url_for('get_projects'))
 
 
 
