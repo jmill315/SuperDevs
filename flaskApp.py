@@ -41,7 +41,7 @@ def get_tasks(project_id):
     # get user from database
     a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
     # get project from database
-    project = db.session.query(Project).filter_by(id=project_id)
+    project = db.session.query(Project).filter_by(id=project_id).one()
     # get tasks from database
     tasks = db.session.query(Project.tasks).filter_by(id=project_id).all()
     return render_template('tasks.html', projects=project, tasks=tasks, user=a_user)
@@ -69,7 +69,7 @@ def new_project():
         a_user = db.session.query(User).filter_by(email='mogli@uncc.edu')
         return render_template("newProject.html", user=a_user)
 
-@app.route('/projects/<project_id>/newTask', methods=['GET', 'POST'])
+@app.route('/projects/newTask/<project_id>', methods=['GET', 'POST'])
 def new_task(project_id):
     # check method used for request
     if request.method == 'POST':
