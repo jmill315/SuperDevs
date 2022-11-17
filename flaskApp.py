@@ -104,7 +104,7 @@ def delete_project(project_id):
     my_project = db.session.query(Project).filter_by(id=project_id).one()
     db.session.delete(my_project)
     db.session.commit()
-    return redirect(url_for('get_projects'))
+    return render_template('projects.html')
 
 
 
