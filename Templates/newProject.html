@@ -42,7 +42,7 @@
     {% if project %}
     <form action="{{url_for('update_project', project_id=project.id)}}" method="post">
         {% else %}
-        <form action="new" method="post">
+        <form action="newProject" method="post">
             {% endif %}
             <p><label>Project Title </label></p>
             <p><input type="text" name="title" value="{% if project %}{{project.title}} {% endif %}"/></p>
@@ -57,7 +57,7 @@
                 </textarea>
             </p>
             <p>
-                {% if note %}
+                {% if project %}
                 <input type="submit" value="Update Project"/>
                 {% else %}
                 <input type="submit" value="Add Project"/>
