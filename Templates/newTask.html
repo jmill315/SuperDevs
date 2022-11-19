@@ -39,11 +39,22 @@
 </section>
 
 <body>
-        <form action="newTask" method="POST">
-            <p><label>Task Title </label></p>
-            <p><input type="text" name="title"/></p>
-            <p><input type="submit" value="Add Task"/></p>
+
+        {% if task %}
+        <form action="" method="post">
+            {% else %}
+            <form action="newTask" method="post">
+                {% endif %}
+                <div class="formwrapper">
+                    <h2 class="title">Add a Task</h2>
+                        <div class="form-field">
+                            {{ form.task.label }} <br/> {{ form.task }}
+                        </div>
+                    {{ form.submit }}
+                </div>
         </form>
+
+\
 
 </body>
 </html>

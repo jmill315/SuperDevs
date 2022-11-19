@@ -49,3 +49,11 @@ class LoginForm(FlaskForm):
     def validate_email(self, field):
         if db.session.query(User).filter_by(email=field.data).count() == 0:
             raise ValidationError('Incorrect username or password.')
+
+class TaskForm(FlaskForm):
+    class Meta:
+        csrf = False
+
+    task = TextAreaField('Task',validators=[Length(min=1)])
+
+    submit = SubmitField('Add Task')
