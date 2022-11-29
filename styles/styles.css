@@ -5,6 +5,9 @@ width: 100%;
 
 #nav{
   background-color: black;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: -1px 1px lightgray;
+  text-align: center;
 }
 
 .sign-up{
@@ -16,4 +19,28 @@ width: 100%;
 
 body{
   text-align: center;
+  background-color:burlywood;
 }
+
+h1{
+  font-family: 'Poppins', sans-serif;
+  text-shadow: -1px 1px lightgray;
+  text-align: center;
+  font-size: larger;
+}
+
+h1{
+  font-family: 'Poppins', sans-serif;
+  text-shadow: -1px 1px lightgray;
+  text-align: center;
+  font-size: large;
+}
+
+main{
+  border-radius: 10%;
+  border-color: darkslategray;
+  background-color:antiquewhite;
+  display: inline-block;
+  text-align: center;
+}
+

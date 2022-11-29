@@ -29,6 +29,7 @@ label {
   margin-bottom: 3px;
   display: block;
   font-weight: 300;
+  font-family: 'Poppins', sans-serif;
 }
 
 input, textarea{
@@ -40,7 +41,6 @@ input, textarea{
   color: #4d5060;
   font-family: 'Poppins', sans-serif;
   font-size: .9em;
-
 }
 
 input[type="text"]::placeholder {
@@ -72,12 +72,14 @@ input[type="submit"] {
   font-weight: 400;
   border: 1px solid green;
   transition: all .3s ease-out;
+  font-family: 'Poppins', sans-serif;
 }
 
 input[type="submit"]:hover {
   cursor: pointer;
   background: white;
   color: green;
+  font-family: 'Poppins', sans-serif;
 }
 
 .success-wrapper {

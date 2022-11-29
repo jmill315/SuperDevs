@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Project Management App">
     <title>Project Management App - New Project</title>
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 
 <!-- Bootstrap CSS + Local css -->
@@ -37,8 +38,7 @@
     </nav>
   </section>
 <body>
-
-
+  <main>
     <h1>Current Projects</h1>
     <h2><a href="{{url_for('new_project')}}">Create Project</a></h2>
         <table>
@@ -59,6 +59,6 @@
             </tr>
             {% endfor %}
         </table>
-
+  </main>
 </body>
 </html>
