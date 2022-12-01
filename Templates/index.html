@@ -26,10 +26,16 @@
         <li class="nav-item mr-auto">
           <a class="nav-link" href="{{url_for('get_projects')}}">Projects</a>
         </li>
-        <li class="nav-item mr-auto">
-            <!-- need to create a app.route for sign up page -->
-          <a class="nav-link" href="{{url_for('index')}}">Sign Up</a>
         </li>
+        {% if user %}
+          <li>
+            <a class="nav-link" href="{{url_for('logout')}}">Log Out</a>
+          </li>
+        {% else %}
+          <li>
+            <a class="nav-link" href="{{url_for('login')}}">Login</a>
+          </li>
+        {% endif %}
 
       </ul>
     </div>
@@ -41,7 +47,7 @@
 <body>
   <main>
     <img id = "homepage-image" src="../images/Homepage.jpg" alt="Test image">
-    <h1>Welcome {{user.name}} to the Chello App!</h1>
+    <h1>Welcome to the Chello App!</h1>
   </main>
 </body>
 </html>

@@ -52,9 +52,11 @@ def get_tasks(project_id):
     if session.get('user'):
         # get project from database
         projects = db.session.query(Project).filter_by(id=project_id).one()
+        projects.counter += 1
         # set up a task form
         tasks = TaskForm()
-        projects.counter += 1
+        db.session.add(projects)
+        db.session.commit()
         return render_template('tasks.html', projects=projects, user=session['user'], form=tasks)
     else:
         return redirect(url_for('login'))
