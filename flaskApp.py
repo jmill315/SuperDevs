@@ -54,6 +54,7 @@ def get_tasks(project_id):
         projects = db.session.query(Project).filter_by(id=project_id).one()
         # set up a task form
         tasks = TaskForm()
+        projects.counter += 1
         return render_template('tasks.html', projects=projects, user=session['user'], form=tasks)
     else:
         return redirect(url_for('login'))
@@ -74,7 +75,8 @@ def new_project():
             today = date.today()
             # format date mm/dd/yyyy
             today = today.strftime("%m-%d-%Y")
-            new_record = Project(title, text, today, session['user_id'])
+            counter = 0
+            new_record = Project(title, text, today, counter, session['user_id'])
             db.session.add(new_record)
             db.session.commit()
             return redirect(url_for('get_projects'))
