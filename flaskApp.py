@@ -195,6 +195,16 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.get("/toggle-theme")
+def toggle_theme():
+    current_theme = session.get("theme")
+    if current_theme == "dark":
+        session["theme"] = "light"
+    else:
+        session["theme"] = "dark"
+    return redirect(request.args.get("current_page"))
+
+
 
 app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)
 # To see the web page in your web browser, go to the url,

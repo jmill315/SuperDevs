@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Project Management App">
     <title>Project Management App - New Project</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/darkModeStyles.css') if session.get('theme') == 'dark' else url_for('static',filename='styles/styles.css') }}">
     <script src="{{ url_for('static',filename='scripts/activity.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -30,6 +30,9 @@
         <li class="nav-item mr-auto">
           <a class="nav-link" href="{{url_for('get_projects')}}">Projects</a>
         </li>
+            <li class="nav-item mr-auto">
+          <a class="nav-link" href="{{url_for('toggle_theme', current_page=request.path)}}">Change Theme</a>
+        </li>
         <li class="nav-item mr-auto">
           <a class="nav-link" href="{{url_for('logout')}}">Log Out</a>
         </li>
@@ -42,16 +45,17 @@
   <main>
     <h1>Current Projects</h1>
     <h2><a href="{{url_for('new_project')}}">Create Project</a></h2>
-        <table>
+        <table class="projects">
             <tr>
                 <th>Projects</th>
                 <th>Date</th>
+                <th>Viewed</th>
             </tr>
             {% for project in projects %}
             <tr>
-                <td><a href="{{url_for('get_tasks', project_id=project.id)}}">{{ project.title }}</a></td>
-                <td>{{ project.date }}</td>
-                <td> Viewed {{ project.counter }} Times</td>
+                <td><a href="{{url_for('get_tasks', project_id=project.id)}}">{{ project.title }} </a></td>
+                <td>| {{ project.date }} | </td>
+                <td> {{ project.counter }} Times |</td>
                 <td><a href="{{url_for('update_project', project_id=project.id)}}">Edit</a></td>
                 <td>
                     <form action="{{url_for('delete_project', project_id=project.id)}}" method="post">

@@ -39,10 +39,8 @@
 
 body{
   text-align: center;
-  background-color:antiquewhite;
-  height: 100%;
-  width: 100%;
-
+  background-color:#212121;
+  color:white;
 }
 
 h1{
@@ -57,19 +55,21 @@ h1{
   text-shadow: -1px 1px lightgray;
   text-align: center;
   font-size: large;
+  text-color: white;
+  text-background: white;
 }
 
 main{
 
-  background-color:antiquewhite;
+  background-color:#212121;
+  color:white;
   text-align: center;
 }
-
 .projects, .tasks{
     margin-left: auto;
     margin-right: auto;
 }
 
 :root{
-    background-color:antiquewhite;
+ background-color:#212121
 }

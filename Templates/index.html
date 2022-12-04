@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Chello App</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/darkModeStyles.css') if session.get('theme') == 'dark' else url_for('static',filename='styles/styles.css') }}">
     <script src="{{ url_for('static',filename='scripts/activity.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -28,6 +28,9 @@
         <li class="nav-item mr-auto">
           <a class="nav-link" href="{{url_for('get_projects')}}">Projects</a>
         </li>
+        <li class="nav-item mr-auto">
+          <a class="nav-link" href="{{url_for('toggle_theme', current_page=request.path)}}">Change Theme</a>
+        </li>
         </li>
         {% if user %}
           <li>
@@ -47,18 +50,18 @@
 
 
 <body>
-
+  <main>
   <div class="liveChat">
     <h1>Live Chat</h1>
     <hr>
     <p class = "question1">What is Chello?</p>
     <p class = "question2">How do I create an account?</p>
-    <p class = "question3">Spcial features to know about Chello?</p>
+    <p class = "question3">Special features to know about Chello?</p>
     <hr>
     <p class="answer">Answer</p>
   </div>
 
-  <main>
+
     <img id = "homepage-image" src="{{ url_for('static',filename='Images/Homepage.jpg') }}" alt="Test image">
     <h1>Welcome to the Chello App!</h1>
   </main>
