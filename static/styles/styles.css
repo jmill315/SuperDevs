@@ -24,18 +24,10 @@
   right: 0px;
   height: 500px;
   width: 250px;
-  background-color: #66B2FF
+  background-color: #66B2FF;
+  border-radius:25px;
 }
 
-.question1:hover{
-  cursor: pointer;
-}
-.question2:hover{
-  cursor: pointer;
-}
-.question3:hover{
-  cursor: pointer;
-}
 
 body{
   text-align: center;

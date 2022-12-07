@@ -204,6 +204,21 @@ def toggle_theme():
         session["theme"] = "dark"
     return redirect(request.args.get("current_page"))
 
+@app.get("/faq")
+def faq():
+    selected_question = request.args.get('type')
+    if selected_question == "question1":
+        return render_template('index.html', Answer='Chello is meant to help teams create projects and tasks for those projects created.')
+    elif selected_question == "question2":
+        return render_template('index.html', Answer='Chello is always changing and will continue to add new features focused on improving usability and effectivness between teams.')
+    elif selected_question == "question3":
+        return render_template('index.html', Answer='Chello allows for the ability to add images to a project/task, you can also change your theme between light and dark.')
+    else:
+        return render_template('index.html', Answer='Error')
+
+
+
+
 
 
 app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', 5000)), debug=True)

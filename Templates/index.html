@@ -52,13 +52,15 @@
 <body>
   <main>
   <div class="liveChat">
-    <h1>Live Chat</h1>
+    <h1>FAQ</h1>
     <hr>
-    <p class = "question1">What is Chello?</p>
-    <p class = "question2">How do I create an account?</p>
-    <p class = "question3">Special features to know about Chello?</p>
+    <a  href="{{url_for('faq', type = 'question1')}}">What is Chello</a>
+    <br>
+    <a  href="{{url_for('faq', type = 'question2')}}">Why use Chello over other popular competitors?</a>
+    <br>
+    <a  href="{{url_for('faq', type = 'question3')}}">Special Features to know about Chello</a>
     <hr>
-    <p class="answer">Answer</p>
+    <p>{{Answer}}</p>
   </div>
 
 
