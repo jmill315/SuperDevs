@@ -214,7 +214,7 @@ def faq():
     elif selected_question == "question3":
         return render_template('index.html', Answer='Chello allows for the ability to add images to a project/task, you can also change your theme between light and dark.')
     else:
-        return render_template('index.html', Answer='Error')
+        return render_template('index.html', Answer='')
 
 
 
