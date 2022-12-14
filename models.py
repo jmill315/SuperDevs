@@ -7,12 +7,14 @@ class Project(db.Model):
     text = db.Column("text", db.String(200))
     date = db.Column("date", db.String(50))
     counter = db.Column("counter", db.Integer)
+    image = db.Column("image", db.String(200, nullable=True))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     tasks = db.relationship("Task", backref="project", cascade="all, delete-orphan", lazy=True)
 
-    def __init__(self, title, text, date, counter, user_id):
+    def __init__(self, title, text, image, date, counter, user_id):
         self.title = title
         self.text = text
+        self.image = image
         self.date = date
         self.counter = counter
         self.user_id = user_id

@@ -14,11 +14,14 @@ from forms import TaskForm
 from flask import session
 import bcrypt
 
+UPLOAD_FOLDER = 'uploads'
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_project_app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'SE3155'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Bind SQLAlchemy db object to this Flask app
 db.init_app(app)
 # setup models
@@ -72,18 +75,36 @@ def new_project():
             title = request.form['title']
             # get note data
             text = request.form['projectText']
+            # get image
+            if 'imageFile' in request.files:
+                fileName = request.files['imageFile']
+                fileName.save(os.path.join(app.config['UPLOAD_FOLDER'], fileName))
+                image = os.path.basename(fileName)
+            else:
+                image = None
             # create date stamp
             from datetime import date
             today = date.today()
             # format date mm/dd/yyyy
             today = today.strftime("%m-%d-%Y")
             counter = 0
-            new_record = Project(title, text, today, counter, session['user_id'])
+            new_record = Project(title, text, image, today, counter, session['user_id'])
             db.session.add(new_record)
             db.session.commit()
             return redirect(url_for('get_projects'))
         else:
             return render_template("newProject.html", user=session['user'])
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/projects/display/<project_id>')
+def display_image(project_id):
+    # check if a user is saved in the session
+    if session.get('user'):
+        # get project from database
+        projects = db.session.query(Project).filter_by(id=project_id).one()
+        image = 'uploads/' + projects.image
+        return redirect(url_for('static', image))
     else:
         return redirect(url_for('login'))
 
@@ -108,9 +129,11 @@ def update_project(project_id):
     if request.method == 'POST':
         title = request.form['title']
         text = request.form['projectText']
+        fileName = request.files['imageFile']
         project = db.session.query(Project).filter_by(id=project_id).one()
         project.title = title
         project.text = text
+        project.image = fileName.filename
         db.session.add(project)
         db.session.commit()
         return redirect(url_for('get_projects'))
