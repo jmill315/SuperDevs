@@ -26,7 +26,7 @@ class RegisterForm(FlaskForm):
 
     confirmPassword = PasswordField('Confirm Password', validators=[
         # regex to make the password need to have at least one uppercase letter, one lowercase letter, one number, and one special character
-        Regexp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&].{6,190}$', message="Password must contain at least one uppercase letter, one number, and a special character"),
+        Regexp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&].{6,15}$', message="Password must contain at least one uppercase letter, one number, and a special character"),
         #Length(min=6, max=10)
     ])
     submit = SubmitField('Submit')

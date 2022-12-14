@@ -57,12 +57,6 @@
                         {% for task in projects.tasks %}
                             <tr>
                                 <td>{{ task.title }}</td>
-                                <td><img src="{{ url_for('send_uploaded_file', filename=uploaded_image) }}" /></td>
-                                <td>
-                                    <form action="{{url_for('delete_task', task_id=task.id)}}" method="post">
-                                        <input type="submit" value="Delete">
-                                    </form>
-                                </td>
                             </tr>
                         {% endfor %}
                     {% endif %}
